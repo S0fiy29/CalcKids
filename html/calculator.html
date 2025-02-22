@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CalcKids</title>
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        body {
+            width: 780px;
+            margin: auto;
+            user-select: none; /* Standard property */
+            -moz-user-select: none; /* Firefox */
+            -webkit-user-select: none; /* WebKit/Blink */
+            -ms-user-select: none; /* Microsoft */
+        }
+
+        
+        .calculator {
+            padding: 20px;
+            -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            background-color: #FFF;
+            box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            border-radius: 1px;
+        }
+        
+        .input {
+            border: 1px solid #ddd;
+            border-radius: 1px;
+            height: 60px;
+            padding-right: 15px;
+            padding-top: 10px;
+            text-align: right;
+            margin-right: 6px;
+            font-size: 2.5rem;
+            overflow-x: auto;
+            transition: all .2s ease-in-out;
+        }
+        
+        .input:hover {
+            border: 1px solid #bbb;
+            -webkit-box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            border-color: #aaa;
+        }
+        
+        .operators div {
+            display: inline-block;
+            border: 1px solid #bbb;
+            border-radius: 1px;
+            width: 80px;
+            text-align: center;
+            padding: 10px;
+            margin: 20px 4px 10px 0;
+            cursor: pointer;
+            background-color: #ddd;
+            transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
+        }
+        
+        .operators div:hover {
+            background-color: #ddd;
+            -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            border-color: #aaa;
+        }
+        
+        .operators div:active {
+            font-weight: bold;
+        }
+        
+        .leftPanel {
+            display: inline-block;
+        }
+        
+        .numbers div {
+            display: inline-block;
+            border: 1px solid #ddd;
+            border-radius: 1px;
+            width: 80px;
+            text-align: center;
+            padding: 10px;
+            margin: 10px 4px 10px 0;
+            cursor: pointer;
+            background-color: #f9f9f9;
+            transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
+        }
+        
+        .numbers div:hover {
+            background-color: #f1f1f1;
+            -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            border-color: #bbb;
+        }
+        
+        .numbers div:active {
+            font-weight: bold;
+        }
+        
+        div.equal {
+            display: inline-block;
+            border: 1px solid #3079ED;
+            border-radius: 1px;
+            width: 17%;
+            text-align: center;
+            padding: 108px 10px;
+            /* margin: 10px 6px 10px 0; */
+            margin-top: 10px;
+            vertical-align: top;
+            cursor: pointer;
+            color: #FFF;
+            background-color: #4d90fe;
+            transition: all .2s ease-in-out;
+        }
+        
+        div.equal:hover {
+            background-color: #307CF9;
+            -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            border-color: #1857BB;
+        }
+        
+        div.equal:active {
+            font-weight: bold;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="backButton">
+        <a href="index.html" class="back-button">
+            <img src="../image/backButton.png">
+        </a>
+    </div>
+
+    <main id="main">
+        <section class="inner-page">
+            <div class="container">
+                <!-- Grade selection buttons -->
+                <div class="button-container2">
+                    <button class="button" id="tahun1-button" onclick="setGrade(0)">Tahun 1</button>
+                    <button class="button" id="tahun2-button" onclick="setGrade(1)">Tahun 2</button>
+                    <button class="button" id="tahun3-button" onclick="setGrade(2)">Tahun 3</button>
+                </div>
+
+
+                <div class="calculator">
+                    <div class="input" id="input"></div>
+                    <div class="buttons">
+                        <div class="operators">
+                            <div id="add" onclick="operatorClicked('+')">+</div>
+                            <div id="subtract" onclick="operatorClicked('-')">-</div>
+                            <div id="multiply" onclick="operatorClicked('*')">&times;</div>
+                            <div id="divide" onclick="operatorClicked('/')">&divide;</div>
+                        </div>
+                        <div class="leftPanel">
+                            <div class="numbers">
+                                <div onclick="numberClicked(7)">7</div>
+                                <div onclick="numberClicked(8)">8</div>
+                                <div onclick="numberClicked(9)">9</div>
+                            </div>
+                            <div class="numbers">
+                                <div onclick="numberClicked(4)">4</div>
+                                <div onclick="numberClicked(5)">5</div>
+                                <div onclick="numberClicked(6)">6</div>
+                            </div>
+                            <div class="numbers">
+                                <div onclick="numberClicked(1)">1</div>
+                                <div onclick="numberClicked(2)">2</div>
+                                <div onclick="numberClicked(3)">3</div>
+                            </div>
+                            <div class="numbers">
+                                <div onclick="numberClicked(0)">0</div>
+                                <div onclick="numberClicked('.')">.</div>
+                                <div id="clear" onclick="clearInput()">C</div>
+                            </div>
+                        </div>
+                        <div class="equal" id="result" onclick="calculate()">=</div>
+                        <!-- Display error messages -->
+                        <div class="error-message" id="error-message"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="text/javascript" src="function.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

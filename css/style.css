@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Koulen&family=Kufam&family=Montserrat:wght@500&family=Oswald:wght@500&family=Playfair+Display&display=swap');   
+
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: montserrat;
+    height: 100vh;
+    margin: 0;
+    background-color: #fce5cd; 
+}
+
+.container {
+    text-align: center;
+    /* background-color: red; */
+}
+
+#title {
+    margin: 20px;
+    color: #f39c12; /* Orange title color */
+}
+
+#title h1 {
+    font-size: 100px; 
+    font-weight: bold;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    display: inline-block;
+    padding: 20px 30px;
+    margin: 10px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    border-radius: 10px; 
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.backButton img {
+    position: fixed;
+    top: 10px; 
+    /* top: 25px; */
+    left: 20px;
+    /* left: 40px; */
+    width: 50px; 
+    height: auto; 
+    border-radius: 50%;
+    background-color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+#tahun1-button {
+    background-color: #3498db; 
+}
+
+#tahun1-button:hover {
+    background-color: #2980b9; 
+}
+
+#tahun2-button {
+    background-color: #2ecc71; 
+}
+
+#tahun2-button:hover {
+    background-color: #27ae60;
+}
+
+#tahun3-button {
+    background-color: #e74c3c;
+}
+
+#tahun3-button:hover {
+    background-color: #c0392b; 
+}
